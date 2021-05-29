@@ -15,6 +15,11 @@
 		84BDE7B526627970007B6AAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BDE7B326627970007B6AAF /* LaunchScreen.storyboard */; };
 		84BDE7C026627970007B6AAF /* Raffel_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7BF26627970007B6AAF /* Raffel_AppTests.swift */; };
 		84BDE7CB26627970007B6AAF /* Raffel_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7CA26627970007B6AAF /* Raffel_AppUITests.swift */; };
+		84BDE7E026627EA6007B6AAF /* Raffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7DF26627EA6007B6AAF /* Raffle.swift */; };
+		84BDE7E22662802B007B6AAF /* Participants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7E12662802B007B6AAF /* Participants.swift */; };
+		84BDE7E4266280D0007B6AAF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7E3266280D0007B6AAF /* Network.swift */; };
+		84BDE7E726628D52007B6AAF /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7E626628D52007B6AAF /* ErrorHandling.swift */; };
+		84BDE7E92662902F007B6AAF /* Raffle-APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7E82662902F007B6AAF /* Raffle-APIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		84BDE7C626627970007B6AAF /* Raffel-AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Raffel-AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84BDE7CA26627970007B6AAF /* Raffel_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raffel_AppUITests.swift; sourceTree = "<group>"; };
 		84BDE7CC26627970007B6AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84BDE7DF26627EA6007B6AAF /* Raffle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raffle.swift; sourceTree = "<group>"; };
+		84BDE7E12662802B007B6AAF /* Participants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participants.swift; sourceTree = "<group>"; };
+		84BDE7E3266280D0007B6AAF /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		84BDE7E626628D52007B6AAF /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		84BDE7E82662902F007B6AAF /* Raffle-APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Raffle-APIClient.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +115,7 @@
 				84BDE7DC266279BC007B6AAF /* Views */,
 				84BDE7DB266279B1007B6AAF /* View-Model */,
 				84BDE7DD266279C3007B6AAF /* ViewControllers */,
+				84BDE7E526628D43007B6AAF /* Extensions */,
 				84BDE7DA266279A9007B6AAF /* Utilities */,
 				84BDE7AE2662796F007B6AAF /* Main.storyboard */,
 				84BDE7B126627970007B6AAF /* Assets.xcassets */,
@@ -135,6 +146,8 @@
 		84BDE7D82662799B007B6AAF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84BDE7DF26627EA6007B6AAF /* Raffle.swift */,
+				84BDE7E12662802B007B6AAF /* Participants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +155,8 @@
 		84BDE7D9266279A1007B6AAF /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				84BDE7E3266280D0007B6AAF /* Network.swift */,
+				84BDE7E82662902F007B6AAF /* Raffle-APIClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -182,6 +197,14 @@
 				84BDE7AA2662796F007B6AAF /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		84BDE7E526628D43007B6AAF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84BDE7E626628D52007B6AAF /* ErrorHandling.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,7 +339,12 @@
 			files = (
 				84BDE7AD2662796F007B6AAF /* ViewController.swift in Sources */,
 				84BDE7A92662796F007B6AAF /* AppDelegate.swift in Sources */,
+				84BDE7E726628D52007B6AAF /* ErrorHandling.swift in Sources */,
+				84BDE7E22662802B007B6AAF /* Participants.swift in Sources */,
 				84BDE7AB2662796F007B6AAF /* SceneDelegate.swift in Sources */,
+				84BDE7E026627EA6007B6AAF /* Raffle.swift in Sources */,
+				84BDE7E4266280D0007B6AAF /* Network.swift in Sources */,
+				84BDE7E92662902F007B6AAF /* Raffle-APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
