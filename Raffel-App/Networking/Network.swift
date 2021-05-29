@@ -18,15 +18,10 @@ class NetworkCall {
         session = URLSession(configuration: .default)
     }
     
-    func dataTask(url: String,
+    func dataTask(request: URLRequest,
                   completion: @escaping (Result<Data, ApiError>) -> ()) {
         
-        guard let url = URL(string: url) else {
-            completion(.failure(.badURL(url)))
-            return
-        }
-        
-        let dataTask = session.dataTask(with: url) { (data, response, error) in
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
             
             if let error = error {
                 completion(.failure(.networkError(error)))
