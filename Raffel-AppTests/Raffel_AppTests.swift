@@ -28,4 +28,12 @@ class Raffel_AppTests: XCTestCase {
         
         wait(for: [expectation], timeout: 3.0)
     }
+    
+    func testaddParticipants() {
+        
+    }
+    
+    func testGetAWinner() {
+        
+    }
 }

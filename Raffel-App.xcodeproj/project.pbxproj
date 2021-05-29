@@ -10,7 +10,6 @@
 		84BDE7A92662796F007B6AAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7A82662796F007B6AAF /* AppDelegate.swift */; };
 		84BDE7AB2662796F007B6AAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7AA2662796F007B6AAF /* SceneDelegate.swift */; };
 		84BDE7AD2662796F007B6AAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7AC2662796F007B6AAF /* ViewController.swift */; };
-		84BDE7B02662796F007B6AAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BDE7AE2662796F007B6AAF /* Main.storyboard */; };
 		84BDE7B226627970007B6AAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84BDE7B126627970007B6AAF /* Assets.xcassets */; };
 		84BDE7B526627970007B6AAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BDE7B326627970007B6AAF /* LaunchScreen.storyboard */; };
 		84BDE7C026627970007B6AAF /* Raffel_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7BF26627970007B6AAF /* Raffel_AppTests.swift */; };
@@ -21,6 +20,7 @@
 		84BDE7E726628D52007B6AAF /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7E626628D52007B6AAF /* ErrorHandling.swift */; };
 		84BDE7E92662902F007B6AAF /* Raffle-APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7E82662902F007B6AAF /* Raffle-APIClient.swift */; };
 		84BDE7EB26629E24007B6AAF /* POSTRaffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7EA26629E24007B6AAF /* POSTRaffle.swift */; };
+		84BDE7ED2662B857007B6AAF /* Winner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7EC2662B857007B6AAF /* Winner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +45,6 @@
 		84BDE7A82662796F007B6AAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84BDE7AA2662796F007B6AAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		84BDE7AC2662796F007B6AAF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		84BDE7AF2662796F007B6AAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84BDE7B126627970007B6AAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84BDE7B426627970007B6AAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84BDE7B626627970007B6AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,6 +60,7 @@
 		84BDE7E626628D52007B6AAF /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		84BDE7E82662902F007B6AAF /* Raffle-APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Raffle-APIClient.swift"; sourceTree = "<group>"; };
 		84BDE7EA26629E24007B6AAF /* POSTRaffle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSTRaffle.swift; sourceTree = "<group>"; };
+		84BDE7EC2662B857007B6AAF /* Winner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Winner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +119,6 @@
 				84BDE7DD266279C3007B6AAF /* ViewControllers */,
 				84BDE7E526628D43007B6AAF /* Extensions */,
 				84BDE7DA266279A9007B6AAF /* Utilities */,
-				84BDE7AE2662796F007B6AAF /* Main.storyboard */,
 				84BDE7B126627970007B6AAF /* Assets.xcassets */,
 				84BDE7B326627970007B6AAF /* LaunchScreen.storyboard */,
 				84BDE7B626627970007B6AAF /* Info.plist */,
@@ -151,6 +150,7 @@
 				84BDE7DF26627EA6007B6AAF /* Raffle.swift */,
 				84BDE7E12662802B007B6AAF /* Participants.swift */,
 				84BDE7EA26629E24007B6AAF /* POSTRaffle.swift */,
+				84BDE7EC2662B857007B6AAF /* Winner.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,7 +315,6 @@
 			files = (
 				84BDE7B526627970007B6AAF /* LaunchScreen.storyboard in Resources */,
 				84BDE7B226627970007B6AAF /* Assets.xcassets in Resources */,
-				84BDE7B02662796F007B6AAF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +343,7 @@
 				84BDE7A92662796F007B6AAF /* AppDelegate.swift in Sources */,
 				84BDE7E726628D52007B6AAF /* ErrorHandling.swift in Sources */,
 				84BDE7E22662802B007B6AAF /* Participants.swift in Sources */,
+				84BDE7ED2662B857007B6AAF /* Winner.swift in Sources */,
 				84BDE7AB2662796F007B6AAF /* SceneDelegate.swift in Sources */,
 				84BDE7E026627EA6007B6AAF /* Raffle.swift in Sources */,
 				84BDE7E4266280D0007B6AAF /* Network.swift in Sources */,
@@ -384,14 +384,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		84BDE7AE2662796F007B6AAF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84BDE7AF2662796F007B6AAF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		84BDE7B326627970007B6AAF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
