@@ -31,7 +31,7 @@ class Raffel_AppTests: XCTestCase {
     
     func testRaffleId()  {
         
-        let expectation = 8
+        let expectation = 9
         let exp = XCTestExpectation(description: "id found")
         
         RaffleAPIClient.getAllRaffle { result in
@@ -39,7 +39,7 @@ class Raffel_AppTests: XCTestCase {
             case .failure(let error):
                 XCTFail("Error getting raffle: \(error.localizedDescription)")
             case .success(let allRaffle):
-                XCTAssertEqual(allRaffle[0].id, expectation)
+                XCTAssertEqual(allRaffle[1].id, expectation)
             }
             exp.fulfill()
         }
@@ -96,6 +96,23 @@ class Raffel_AppTests: XCTestCase {
             case .success(_):
                 XCTAssert(true)
             }
+        }
+        
+        wait(for: [expectation], timeout: 3.0)
+    }
+    
+    func testGetWinner() {
+        let expectation = XCTestExpectation(description: "able to get winner information")
+        let expectedWinnerId = 107
+        
+        RaffleAPIClient.getAWinner(id: 78) { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Error getting a winner:\(error)")
+            case .success(let aWinner):
+                XCTAssertEqual(expectedWinnerId, aWinner.id)
+            }
+            expectation.fulfill()
         }
         
         wait(for: [expectation], timeout: 3.0)
