@@ -7,7 +7,6 @@
 
 import Foundation
 
-struct POSTRaffle: Encodable {
-    var name: String
+struct Token: Codable {
     var secret_token: String
 }

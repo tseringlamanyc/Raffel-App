@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Participants: Decodable {
+struct Participant: Codable {
     var id: Int?
     var raffle_id: Int
-    var firstName: String
-    var lastName: String
+    var firstname: String
+    var lastname: String
     var email: String
     var phone: Int?
     var registered_at: Date?

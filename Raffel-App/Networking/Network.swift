@@ -13,7 +13,6 @@ class NetworkCall {
     
     private var session: URLSession
     
-    
     private init() {
         session = URLSession(configuration: .default)
     }

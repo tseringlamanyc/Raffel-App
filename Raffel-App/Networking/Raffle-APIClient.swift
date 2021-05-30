@@ -8,7 +8,7 @@
 import Foundation
 
 struct RaffleAPIClient {
-    static func getAllRaffel(completion: @escaping (Result<[Raffle], ApiError>) -> ()) {
+    static func getAllRaffle(completion: @escaping (Result<[Raffle], ApiError>) -> ()) {
         let getEndpoint = "https://raffle-fs-app.herokuapp.com/api/raffles"
         
         guard let url = URL(string: getEndpoint) else {
@@ -33,7 +33,7 @@ struct RaffleAPIClient {
         }
     }
     
-    static func postARaffle(createdRaffle: POSTRaffle, completion: @escaping (Result<Bool, ApiError>) -> ()) {
+    static func postARaffle(createdRaffle: Raffle, completion: @escaping (Result<Bool, ApiError>) -> ()) {
         let postEndpoint = "https://raffle-fs-app.herokuapp.com/api/raffles"
         
         guard let url = URL(string: postEndpoint) else {
@@ -59,5 +59,67 @@ struct RaffleAPIClient {
         } catch {
             completion(.failure(.decodingError(error)))
         }
+    }
+    
+    static func postAParticipant(id: Int, participant: Participant, completion: @escaping (Result<Bool, ApiError>) -> ()) {
+        let postEndpoint = "https://raffle-fs-app.herokuapp.com/api/raffles/\(id)/participants"
+        
+        guard let url = URL(string: postEndpoint) else {
+            completion(.failure(.badURL(postEndpoint)))
+            return
+        }
+        
+        do {
+            let data = try JSONEncoder().encode(participant)
+            var request = URLRequest(url: url)
+            request.httpBody = data
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            NetworkCall.shared.dataTask(request: request) { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(.networkError(error)))
+                case .success(_):
+                    completion(.success(true))
+                }
+            }
+            
+        } catch {
+            completion(.failure(.decodingError(error)))
+        }
+    }
+    
+    static func requestAWinner(token: String, raffleId: Int, completion: @escaping (Result<Bool, ApiError>) -> ()) {
+        let putEndpoint = "https://raffle-fs-app.herokuapp.com/api/raffles/\(raffleId)/winner"
+        
+        guard let url = URL(string: putEndpoint) else {
+            completion(.failure(.badURL(putEndpoint)))
+            return
+        }
+        
+        do {
+            let Token = Token(secret_token: token)
+            let data = try JSONEncoder().encode(Token)
+            var request = URLRequest(url: url)
+            request.httpBody = data
+            request.httpMethod = "PUT"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            NetworkCall.shared.dataTask(request: request) { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(.networkError(error)))
+                case .success(_):
+                    completion(.success(true))
+                }
+            }
+        } catch {
+            completion(.failure(.decodingError(error)))
+        }
+    }
+    
+    static func getAWinner() {
+        
     }
 }

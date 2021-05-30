@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RaffleViewController: UIViewController {
     
     var allRaffels = [Raffle]()
 
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     }
     
     func getAllRaffles() {
-        RaffleAPIClient.getAllRaffel { [weak self] result in
+        RaffleAPIClient.getAllRaffle { [weak self] result in
             switch result {
             case .failure(let error):
                 print(error)
@@ -28,7 +28,5 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-
 }
 
