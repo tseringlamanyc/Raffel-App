@@ -34,8 +34,7 @@ class RaffleViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setUpCollectionView()
         getAllRaffles()
-        //configureDataSource()
-        dump(allRaffels.count)
+        configureNavBar()
     }
     
     private func setUpCollectionView() {
@@ -43,6 +42,11 @@ class RaffleViewController: UIViewController {
          homeView.cv.dataSource = self
          homeView.cv.delegate = self
      }
+    
+    private func configureNavBar() {
+          navigationItem.title = "ALL RAFFLES"
+          navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: nil)
+      }
     
     func getAllRaffles() {
         RaffleAPIClient.getAllRaffle { [weak self] result in
@@ -107,32 +111,39 @@ extension RaffleViewController: UICollectionViewDataSource {
             fatalError()
         }
         
+        cell.backgroundColor = .systemBackground
+        cell.layer.cornerRadius = 10
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.green.cgColor
+        
         let aRaffle = allRaffels[indexPath.row]
         
-        if let winnerID = aRaffle.created_at {
-            cell.raffleName.text = winnerID.toDate()
+        if let winnerID = aRaffle.winner_id {
+            cell.raffleName.text = winnerID.description
+            cell.layer.cornerRadius = 10
+            cell.layer.borderWidth = 1.0
+            cell.layer.borderColor = UIColor.red.cgColor
         } else {
             cell.raffleName.text = "No winner yet"
         }
-        cell.backgroundColor = .systemBackground
-        
-        cell.layer.cornerRadius = 10
-        cell.layer.borderWidth = 1.0
-        cell.layer.borderColor = UIColor.gray.cgColor
-        
+
         return cell
     }
 }
 
 extension RaffleViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let interspacing = CGFloat(5)
-        let maxwidth = UIScreen.main.bounds.size.width
-        let maxheight = UIScreen.main.bounds.size.height / 4
-        let numOfItems = CGFloat(2)
-        let totalSpacing = CGFloat(numOfItems * interspacing)
-        let itemWidth = CGFloat((maxwidth - totalSpacing) / (numOfItems) )
-        return CGSize(width: itemWidth, height: maxheight)
+      let interItemSpacing: CGFloat = 10 // space between items
+      let maxWidth = UIScreen.main.bounds.size.width // device's width
+      let numberOfItems: CGFloat = 2 // items
+      let totalSpacing: CGFloat = numberOfItems * interItemSpacing
+      let itemWidth: CGFloat = (maxWidth - totalSpacing) / numberOfItems
+      
+      return CGSize(width: itemWidth, height: itemWidth)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) ->  UIEdgeInsets {
+      return UIEdgeInsets(top: 8, left: 5, bottom: 5, right: 5)
+    }
+
 }

@@ -36,7 +36,7 @@ class AllRaffleView: UIView {
         
         cv.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cv.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
+            cv.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             cv.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             cv.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             cv.bottomAnchor.constraint(equalTo: bottomAnchor)
