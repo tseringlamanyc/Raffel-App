@@ -99,8 +99,8 @@ struct RaffleAPIClient {
         }
         
         do {
-            let Token = Token(secret_token: token)
-            let data = try JSONEncoder().encode(Token)
+            let tokenKey = Token(secret_token: token)
+            let data = try JSONEncoder().encode(tokenKey)
             var request = URLRequest(url: url)
             request.httpBody = data
             request.httpMethod = "PUT"

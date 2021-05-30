@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2E2541266405620068BCCA /* RaffleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E2540266405620068BCCA /* RaffleDetailViewController.swift */; };
 		847DF5C626634E11004266E2 /* BetterDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5C526634E11004266E2 /* BetterDate.swift */; };
 		847DF5C826634F08004266E2 /* AllRaffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5C726634F08004266E2 /* AllRaffleView.swift */; };
 		847DF5CA266351F7004266E2 /* RaffleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5C9266351F7004266E2 /* RaffleCell.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B2E2540266405620068BCCA /* RaffleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaffleDetailViewController.swift; sourceTree = "<group>"; };
 		847DF5C526634E11004266E2 /* BetterDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterDate.swift; sourceTree = "<group>"; };
 		847DF5C726634F08004266E2 /* AllRaffleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRaffleView.swift; sourceTree = "<group>"; };
 		847DF5C9266351F7004266E2 /* RaffleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaffleCell.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				84BDE7AC2662796F007B6AAF /* RaffleViewController.swift */,
 				847DF5CE26636A1A004266E2 /* TabBarViewController.swift */,
 				847DF5D02663702A004266E2 /* SelectWinnerViewController.swift */,
+				0B2E2540266405620068BCCA /* RaffleDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				84BDE7E4266280D0007B6AAF /* Network.swift in Sources */,
 				847DF5D12663702A004266E2 /* SelectWinnerViewController.swift in Sources */,
 				84BDE7E92662902F007B6AAF /* Raffle-APIClient.swift in Sources */,
+				0B2E2541266405620068BCCA /* RaffleDetailViewController.swift in Sources */,
 				84BDE7EB26629E24007B6AAF /* Token.swift in Sources */,
 				847DF5CC2663664D004266E2 /* RaffleCellViewModel.swift in Sources */,
 				847DF5CF26636A1A004266E2 /* TabBarViewController.swift in Sources */,
@@ -470,7 +474,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -525,7 +529,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -583,7 +587,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83DYP84L8W;
 				INFOPLIST_FILE = "Raffel-AppTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -605,7 +609,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83DYP84L8W;
 				INFOPLIST_FILE = "Raffel-AppTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,6 +630,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83DYP84L8W;
 				INFOPLIST_FILE = "Raffel-AppUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -646,6 +651,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83DYP84L8W;
 				INFOPLIST_FILE = "Raffel-AppUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
