@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Participant: Codable {
+struct Participant: Codable & Hashable {
     var id: Int?
     var raffle_id: Int
     var firstname: String
