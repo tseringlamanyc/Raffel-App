@@ -23,6 +23,8 @@ class RaffleViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<SectionKind, Raffle>
     private var dataSource: DataSource!
     
+    typealias Snapshot = NSDiffableDataSourceSnapshot<SectionKind, Raffle>
+    
     var allRaffels = [Raffle]()
     
     override func viewDidLoad() {
@@ -37,6 +39,7 @@ class RaffleViewController: UIViewController {
     private func setUpCollectionView() {
         homeView.cv = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         homeView.cv.register(RaffleCell.self, forCellWithReuseIdentifier: RaffleCell.reuseIdentifier)
+        homeView.cv.delegate = self
         homeView.cv.backgroundColor = .systemBackground
         homeView.cv.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(homeView.cv)
@@ -54,8 +57,8 @@ class RaffleViewController: UIViewController {
                 case .failure(let error):
                     print(error)
                 case .success(let data):
-                    self?.allRaffels = data
                     self?.updateSnapShot(raffles: data)
+                    self?.allRaffels = data
                 }
             }
         }
@@ -65,12 +68,12 @@ class RaffleViewController: UIViewController {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
         
         //2) Create and configure group
         let groupHeight = NSCollectionLayoutDimension.absolute(200)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: groupHeight)
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1) // 1 or 4
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1) 
         
         //3) Configure section
         let section = NSCollectionLayoutSection(group: group)
@@ -86,64 +89,39 @@ class RaffleViewController: UIViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RaffleCell.reuseIdentifier, for: indexPath) as? RaffleCell else {
                 fatalError()
             }
-            cell.backgroundColor = .systemRed
-            cell.raffleName.text = raffle.name
+            
+            cell.layer.cornerRadius = 8.0
+            
+            cell.layer.borderColor = UIColor.green.cgColor
+            cell.layer.borderWidth = 2
+            
+            if let hasWinner = raffle.winner_id {
+                cell.layer.borderColor = UIColor.red.cgColor
+                cell.layer.borderWidth = 2
+                cell.winnerLabel.text = "Has a winner: \(hasWinner)"
+            } else {
+                cell.winnerLabel.text = "No winner yet for: \(raffle.id ?? 0)"
+            }
+            
+            cell.raffleName.text = "\(raffle.name ?? "") \(raffle.id ?? 0)"
             return cell
         })
     }
     
     private func updateSnapShot(raffles: [Raffle]) {
-        var snapshot = dataSource.snapshot()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(raffles, toSection: .main)
+        var snapshot = Snapshot()
+        snapshot.appendSections([SectionKind.main])
+        snapshot.appendItems(raffles)
+        snapshot.reloadItems(raffles)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
-//extension RaffleViewController: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return allRaffels.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RaffleCell.reuseIdentifier, for: indexPath) as?
-//                RaffleCell else {
-//            fatalError()
-//        }
-//
-//        cell.backgroundColor = .systemBackground
-//        cell.layer.cornerRadius = 10
-//        cell.layer.borderWidth = 1.0
-//        cell.layer.borderColor = UIColor.green.cgColor
-//
-//        let aRaffle = allRaffels[indexPath.row]
-//
-//        if let winnerID = aRaffle.name {
-//            cell.raffleName.text = winnerID
-//            cell.layer.cornerRadius = 10
-//            cell.layer.borderWidth = 1.0
-//            cell.layer.borderColor = UIColor.red.cgColor
-//        } else {
-//            cell.raffleName.text = "No winner yet"
-//        }
-//
-//        return cell
-//    }
-//}
-//
-//extension RaffleViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//      let interItemSpacing: CGFloat = 10 // space between items
-//      let maxWidth = UIScreen.main.bounds.size.width // device's width
-//      let numberOfItems: CGFloat = 2 // items
-//      let totalSpacing: CGFloat = numberOfItems * interItemSpacing
-//      let itemWidth: CGFloat = (maxWidth - totalSpacing) / numberOfItems
-//
-//      return CGSize(width: itemWidth, height: itemWidth)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) ->  UIEdgeInsets {
-//      return UIEdgeInsets(top: 8, left: 5, bottom: 5, right: 5)
-//    }
-//
-//}
+extension RaffleViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let raffle = dataSource.itemIdentifier(for: indexPath) else {return}
+        
+        let detailRaffleVC = RaffleDetailViewController(raffle: raffle)
+        navigationController?.pushViewController(detailRaffleVC, animated: true)
+    }
+}

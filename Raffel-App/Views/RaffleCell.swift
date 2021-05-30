@@ -19,6 +19,27 @@ class RaffleCell: UICollectionViewCell {
         return label
     }()
     
+    public lazy var winnerLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .black
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    public lazy var verticalStack: UIStackView = {
+       let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        [self.raffleName,
+         self.winnerLabel
+        ].forEach {
+            stack.addArrangedSubview($0)
+        }
+        return stack
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -30,7 +51,7 @@ class RaffleCell: UICollectionViewCell {
     }
     
     private func commonInit() {
-        imageViewConstraints()
+        configureStackView()
     }
     
     private func imageViewConstraints() {
@@ -41,6 +62,18 @@ class RaffleCell: UICollectionViewCell {
             raffleName.centerXAnchor.constraint(equalTo: centerXAnchor),
             raffleName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             raffleName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        ])
+    }
+    
+    private func configureStackView() {
+        addSubview(verticalStack)
+        
+        verticalStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            verticalStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            verticalStack.leftAnchor.constraint(equalTo: leftAnchor),
+            verticalStack.rightAnchor.constraint(equalTo: rightAnchor),
+            verticalStack.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

@@ -13,7 +13,7 @@ class Raffel_AppTests: XCTestCase {
 //        func testAddingRaffle() {
 //            let expectation = XCTestExpectation(description: "added raffle")
 //
-//            let createdRaffle = Raffle(id: nil, name: "League Of Legends", created_at: nil, raffled_at: nil, winner_id: nil, secret_token: "lol123")
+//            let createdRaffle = Raffle(id: nil, name: "Listener Please", created_at: nil, raffled_at: nil, winner_id: nil, secret_token: "lol123")
 //
 //            RaffleAPIClient.postARaffle(createdRaffle: createdRaffle) { result in
 //                expectation.fulfill()
@@ -116,5 +116,21 @@ class Raffel_AppTests: XCTestCase {
         }
         
         wait(for: [expectation], timeout: 3.0)
+    }
+    
+    func testGetParticipants() {
+        let expectation = XCTestExpectation(description: "found participants")
+        let expParticipantCount = 2
+        
+        RaffleAPIClient.getAllParticipants(id: 88) { (result) in
+            switch result {
+            case .failure(let error):
+                XCTFail("Error getting participants: \(error)")
+            case .success(let participants):
+                XCTAssertEqual(expParticipantCount, participants.count)
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 4.0)
     }
 }

@@ -14,5 +14,5 @@ struct Participant: Codable & Hashable {
     var lastname: String
     var email: String
     var phone: Int?
-    var registered_at: Date?
+    var registered_at: String?
 }

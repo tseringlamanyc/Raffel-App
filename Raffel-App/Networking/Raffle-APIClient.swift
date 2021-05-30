@@ -143,4 +143,30 @@ struct RaffleAPIClient {
             }
         }
     }
+    
+    static func getAllParticipants(id: Int, completion: @escaping (Result<[Participant], ApiError>) -> ()) {
+        
+        let getEndpoint = "https://raffle-fs-app.herokuapp.com/api/raffles/\(id)/participants"
+        
+        guard let url = URL(string: getEndpoint) else {
+            completion(.failure(.badURL(getEndpoint)))
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        NetworkCall.shared.dataTask(request: request) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(.networkError(error)))
+            case .success(let data):
+                do {
+                    let allParticipants = try JSONDecoder().decode([Participant].self, from: data)
+                    completion(.success(allParticipants))
+                } catch {
+                    completion(.failure(.decodingError(error)))
+                }
+            }
+        }
+    }
 }
