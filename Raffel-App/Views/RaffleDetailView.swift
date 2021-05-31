@@ -12,7 +12,7 @@ class RaffleDetailView: UIView {
     public lazy var cv: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .systemRed
+        cv.backgroundColor = .systemBackground
         return cv
     }()
     

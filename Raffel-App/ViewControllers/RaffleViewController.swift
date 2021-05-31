@@ -49,7 +49,7 @@ class RaffleViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addARaffle))
     }
     
-    func getAllRaffles() {
+    private func getAllRaffles() {
         RaffleAPIClient.getAllRaffle { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
@@ -118,7 +118,7 @@ class RaffleViewController: UIViewController {
         //2) Create and configure group
         let groupHeight = NSCollectionLayoutDimension.absolute(200)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: groupHeight)
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1) 
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
         
         //3) Configure section
         let section = NSCollectionLayoutSection(group: group)
@@ -135,47 +135,7 @@ class RaffleViewController: UIViewController {
                 fatalError()
             }
             
-            cell.layer.cornerRadius = 8.0
-            
-            cell.layer.borderColor = UIColor.green.cgColor
-            cell.layer.borderWidth = 2
-     
-            let imageAttachment = NSTextAttachment()
-            imageAttachment.image = SFLabel.name.attachment
-            let fullString = NSMutableAttributedString(string: "")
-            fullString.append(NSAttributedString(attachment: imageAttachment))
-            fullString.append(NSAttributedString(string: " \(raffle.name ?? "")"))
-            cell.raffleName.attributedText = fullString
-
-            if let _ = raffle.winner_id {
-                cell.layer.borderColor = UIColor.red.cgColor
-                cell.layer.borderWidth = 2
-                
-                let imageAttachment2 = NSTextAttachment()
-                imageAttachment2.image = SFLabel.raffleAt.attachment
-                let fullString2 = NSMutableAttributedString(string: "")
-                fullString2.append(NSAttributedString(attachment: imageAttachment2))
-                fullString2.append(NSAttributedString(string: " Raffled At: \(raffle.raffled_at?.toDate() ?? "")"))
-                cell.raffledOn.attributedText = fullString2
-                
-                let imageAttachment3 = NSTextAttachment()
-                imageAttachment3.image = SFLabel.winner.attachment
-                let fullString3 = NSMutableAttributedString(string: "")
-                fullString3.append(NSAttributedString(attachment: imageAttachment3))
-                fullString3.append(NSAttributedString(string: " Winner Id: \(raffle.winner_id?.description ?? "")"))
-                cell.winnerLabel.attributedText = fullString3
-            } else {
-                cell.winnerLabel.text = "No winner yet for: \(raffle.id ?? 0)"
-                cell.raffledOn.text = "Not raffled"
-            }
-            
-            let imageAttachment4 = NSTextAttachment()
-            imageAttachment4.image = SFLabel.created.attachment
-            let fullString4 = NSMutableAttributedString(string: "")
-            fullString4.append(NSAttributedString(attachment: imageAttachment4))
-            fullString4.append(NSAttributedString(string: " Created @ \(raffle.created_at?.toDate() ?? "")"))
-            cell.createdAt.attributedText = fullString4
-            
+            cell.configureCell(raffle: raffle)
             return cell
         })
     }
@@ -184,7 +144,6 @@ class RaffleViewController: UIViewController {
         var snapshot = Snapshot()
         snapshot.appendSections([SectionKind.main])
         snapshot.appendItems(raffles)
-        
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }

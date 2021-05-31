@@ -13,6 +13,6 @@ struct Participant: Codable & Hashable {
     var firstname: String
     var lastname: String
     var email: String
-    var phone: Int?
+    var phone: String?
     var registered_at: String?
 }
