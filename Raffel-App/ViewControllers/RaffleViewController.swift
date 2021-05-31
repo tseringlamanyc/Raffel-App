@@ -86,9 +86,7 @@ class RaffleViewController: UIViewController {
         }
         
         ac.addAction(submitAction)
-        present(ac, animated: true) {
-            
-        }
+        present(ac, animated: true)
     }
     
     @objc func dismissOnTapOutside(){
