@@ -14,8 +14,6 @@ class ParticipantCell: UICollectionViewCell {
         super.layoutSubviews()
         self.clipsToBounds = true
         self.layer.cornerRadius = 8
-        self.layer.borderColor = UIColor.green.cgColor
-        self.layer.borderWidth = 2
     }
     
     public lazy var participantName: UILabel = {
@@ -90,9 +88,17 @@ class ParticipantCell: UICollectionViewCell {
         ])
     }
     
-    public func configureCell(participant: Participant) {
+    public func configureCell(participant: Participant, raffle: Raffle) {
+        
+        self.layer.borderColor = UIColor.systemRed.cgColor
+        self.layer.borderWidth = 2
+        
         participantName.text = "\(participant.firstname.capitalized) \(participant.lastname.capitalized)"
         emailLabel.text = participant.email
+        
+        if raffle.winner_id == participant.id {
+            self.layer.borderColor = UIColor.systemGreen.cgColor
+        }
         
         if let phoneNumber = participant.phone {
             phonelLabel.text = phoneNumber

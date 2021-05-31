@@ -91,44 +91,21 @@ class RaffleCell: UICollectionViewCell {
     
     public func configureCell(raffle: Raffle) {
         
-        layer.borderColor = UIColor.green.cgColor
+        layer.borderColor = UIColor.systemGreen.cgColor
         layer.borderWidth = 2
         
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = SFLabel.name.attachment
-        let fullString = NSMutableAttributedString(string: "")
-        fullString.append(NSAttributedString(attachment: imageAttachment))
-        fullString.append(NSAttributedString(string: " \(raffle.name ?? "")"))
-        raffleName.attributedText = fullString
+        raffleName.text = raffle.name ?? ""
         
         if let _ = raffle.winner_id {
-           layer.borderColor = UIColor.red.cgColor
-           layer.borderWidth = 2
-            
-            let imageAttachment2 = NSTextAttachment()
-            imageAttachment2.image = SFLabel.raffleAt.attachment
-            let fullString2 = NSMutableAttributedString(string: "")
-            fullString2.append(NSAttributedString(attachment: imageAttachment2))
-            fullString2.append(NSAttributedString(string: " Raffled At: \(raffle.raffled_at?.toDate() ?? "")"))
-            raffledOn.attributedText = fullString2
-            
-            let imageAttachment3 = NSTextAttachment()
-            imageAttachment3.image = SFLabel.winner.attachment
-            let fullString3 = NSMutableAttributedString(string: "")
-            fullString3.append(NSAttributedString(attachment: imageAttachment3))
-            fullString3.append(NSAttributedString(string: " Winner Id: \(raffle.winner_id?.description ?? "")"))
-            winnerLabel.attributedText = fullString3
+            layer.borderColor = UIColor.red.cgColor
+            layer.borderWidth = 2
+            raffledOn.text = "Raffled At: \(raffle.raffled_at?.toDate() ?? "")"
+            winnerLabel.text = "Winner Id: \(raffle.winner_id?.description ?? "")"
         } else {
             winnerLabel.text = "No winner yet for: \(raffle.id ?? 0)"
             raffledOn.text = "Not raffled"
         }
         
-        let imageAttachment4 = NSTextAttachment()
-        imageAttachment4.image = SFLabel.created.attachment
-        let fullString4 = NSMutableAttributedString(string: "")
-        fullString4.append(NSAttributedString(attachment: imageAttachment4))
-        fullString4.append(NSAttributedString(string: " Created @ \(raffle.created_at?.toDate() ?? "")"))
-       createdAt.attributedText = fullString4
-        
+        createdAt.text = "Created @ \(raffle.created_at?.toDate() ?? "")"
     }
 }

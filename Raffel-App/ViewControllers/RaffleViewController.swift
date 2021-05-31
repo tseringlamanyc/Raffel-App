@@ -49,7 +49,7 @@ class RaffleViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addARaffle))
     }
     
-    private func getAllRaffles() {
+    func getAllRaffles() {
         RaffleAPIClient.getAllRaffle { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
