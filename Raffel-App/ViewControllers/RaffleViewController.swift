@@ -9,8 +9,9 @@ import UIKit
 
 class RaffleViewController: UIViewController {
     
-    
     private var homeView = AllRaffleView()
+    
+    private let raffleCellVM = RaffleCellViewModel()
     
     override func loadView() {
         view = homeView
@@ -47,7 +48,7 @@ class RaffleViewController: UIViewController {
     
     private func configureNavBar() {
         navigationItem.title = "ALL RAFFLES"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addARaffle))
     }
     
     func getAllRaffles() {
@@ -59,6 +60,45 @@ class RaffleViewController: UIViewController {
                 case .success(let data):
                     self?.updateSnapShot(raffles: data)
                     self?.allRaffels = data
+                }
+            }
+        }
+    }
+    
+    @objc
+    private func addARaffle() {
+        let ac = UIAlertController(title: "Enter a raffle", message: nil, preferredStyle: .alert)
+        ac.addTextField { (textField) in
+            textField.placeholder = "Enter Raffle Name"
+        }
+        
+        ac.addTextField { (textField) in
+            textField.placeholder = "Enter Secret Token"
+        }
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
+            
+            guard let raffleName = ac?.textFields?[0].text, !raffleName.isEmpty, let secretToken = ac?.textFields?[1].text, !secretToken.isEmpty else {
+                self?.showAlert(title: "Fail", message: "Please enter all the fields")
+                return
+            }
+            
+            self?.postARaffle(name: raffleName, token: secretToken)
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    private func postARaffle(name: String, token: String) {
+        let createdRaffle = Raffle(id: nil, name: name, created_at: nil, raffled_at: nil, winner_id: nil, secret_token: token)
+        RaffleAPIClient.postARaffle(createdRaffle: createdRaffle) { [weak self] (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print("error adding raffle: \(error)")
+                case .success(_):
+                    self?.showAlert(title: "Success", message: "Raffle Added")
                 }
             }
         }
@@ -85,25 +125,12 @@ class RaffleViewController: UIViewController {
     }
     
     private func configureDataSource() {
-        dataSource = DataSource(collectionView: homeView.cv, cellProvider: { collectionView, indexPath, raffle in
+        dataSource = DataSource(collectionView: homeView.cv, cellProvider: { [weak self] collectionView, indexPath, raffle in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RaffleCell.reuseIdentifier, for: indexPath) as? RaffleCell else {
                 fatalError()
             }
             
-            cell.layer.cornerRadius = 8.0
-            
-            cell.layer.borderColor = UIColor.green.cgColor
-            cell.layer.borderWidth = 2
-            
-            if let hasWinner = raffle.winner_id {
-                cell.layer.borderColor = UIColor.red.cgColor
-                cell.layer.borderWidth = 2
-                cell.winnerLabel.text = "Has a winner: \(hasWinner)"
-            } else {
-                cell.winnerLabel.text = "No winner yet for: \(raffle.id ?? 0)"
-            }
-            
-            cell.raffleName.text = "\(raffle.name ?? "") \(raffle.id ?? 0)"
+            self?.raffleCellVM.configureCell(cell: cell, raffle: raffle)
             return cell
         })
     }

@@ -13,15 +13,34 @@ class RaffleCell: UICollectionViewCell {
     
     public lazy var raffleName: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         label.numberOfLines = 0 
         return label
     }()
     
     public lazy var winnerLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.textColor = .black
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    public lazy var createdAt: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 35, weight: .light)
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    public lazy var raffledOn: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
         label.textColor = .black
         label.numberOfLines = 0
         return label
@@ -33,7 +52,9 @@ class RaffleCell: UICollectionViewCell {
         stack.alignment = .fill
         stack.distribution = .fillEqually
         [self.raffleName,
-         self.winnerLabel
+         self.createdAt,
+         self.winnerLabel,
+         self.raffledOn
         ].forEach {
             stack.addArrangedSubview($0)
         }
@@ -53,26 +74,15 @@ class RaffleCell: UICollectionViewCell {
     private func commonInit() {
         configureStackView()
     }
-    
-    private func imageViewConstraints() {
-        addSubview(raffleName)
-        raffleName.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            raffleName.centerYAnchor.constraint(equalTo: centerYAnchor),
-            raffleName.centerXAnchor.constraint(equalTo: centerXAnchor),
-            raffleName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            raffleName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-        ])
-    }
-    
+        
     private func configureStackView() {
         addSubview(verticalStack)
         
         verticalStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             verticalStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            verticalStack.leftAnchor.constraint(equalTo: leftAnchor),
-            verticalStack.rightAnchor.constraint(equalTo: rightAnchor),
+            verticalStack.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+            verticalStack.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             verticalStack.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
