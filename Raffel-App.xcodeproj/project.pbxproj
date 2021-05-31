@@ -14,8 +14,6 @@
 		847DF5C826634F08004266E2 /* AllRaffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5C726634F08004266E2 /* AllRaffleView.swift */; };
 		847DF5CA266351F7004266E2 /* RaffleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5C9266351F7004266E2 /* RaffleCell.swift */; };
 		847DF5CC2663664D004266E2 /* RaffleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5CB2663664D004266E2 /* RaffleCellViewModel.swift */; };
-		847DF5CF26636A1A004266E2 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5CE26636A1A004266E2 /* TabBarViewController.swift */; };
-		847DF5D12663702A004266E2 /* SelectWinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5D02663702A004266E2 /* SelectWinnerViewController.swift */; };
 		84BDE7A92662796F007B6AAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7A82662796F007B6AAF /* AppDelegate.swift */; };
 		84BDE7AB2662796F007B6AAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7AA2662796F007B6AAF /* SceneDelegate.swift */; };
 		84BDE7AD2662796F007B6AAF /* RaffleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7AC2662796F007B6AAF /* RaffleViewController.swift */; };
@@ -30,6 +28,8 @@
 		84BDE7E92662902F007B6AAF /* Raffle-APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7E82662902F007B6AAF /* Raffle-APIClient.swift */; };
 		84BDE7EB26629E24007B6AAF /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7EA26629E24007B6AAF /* Token.swift */; };
 		84BDE7ED2662B857007B6AAF /* Winner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7EC2662B857007B6AAF /* Winner.swift */; };
+		84D6775D2665447400100A4A /* RaffleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6775C2665447400100A4A /* RaffleDetailView.swift */; };
+		84D6775F2665449100100A4A /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6775E2665449100100A4A /* ParticipantCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +57,6 @@
 		847DF5C726634F08004266E2 /* AllRaffleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRaffleView.swift; sourceTree = "<group>"; };
 		847DF5C9266351F7004266E2 /* RaffleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaffleCell.swift; sourceTree = "<group>"; };
 		847DF5CB2663664D004266E2 /* RaffleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaffleCellViewModel.swift; sourceTree = "<group>"; };
-		847DF5CE26636A1A004266E2 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		847DF5D02663702A004266E2 /* SelectWinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWinnerViewController.swift; sourceTree = "<group>"; };
 		84BDE7A52662796F007B6AAF /* Raffel-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Raffel-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84BDE7A82662796F007B6AAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84BDE7AA2662796F007B6AAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +77,8 @@
 		84BDE7E82662902F007B6AAF /* Raffle-APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Raffle-APIClient.swift"; sourceTree = "<group>"; };
 		84BDE7EA26629E24007B6AAF /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		84BDE7EC2662B857007B6AAF /* Winner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Winner.swift; sourceTree = "<group>"; };
+		84D6775C2665447400100A4A /* RaffleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaffleDetailView.swift; sourceTree = "<group>"; };
+		84D6775E2665449100100A4A /* ParticipantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				847DF5C726634F08004266E2 /* AllRaffleView.swift */,
-				847DF5C9266351F7004266E2 /* RaffleCell.swift */,
+				84D6775C2665447400100A4A /* RaffleDetailView.swift */,
+				84D6775B2665445800100A4A /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,8 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				84BDE7AC2662796F007B6AAF /* RaffleViewController.swift */,
-				847DF5CE26636A1A004266E2 /* TabBarViewController.swift */,
-				847DF5D02663702A004266E2 /* SelectWinnerViewController.swift */,
 				0B2E2540266405620068BCCA /* RaffleDetailViewController.swift */,
 			);
 			path = ViewControllers;
@@ -235,6 +234,15 @@
 				0B68A73F26645D5800E643E7 /* Alert.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84D6775B2665445800100A4A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				847DF5C9266351F7004266E2 /* RaffleCell.swift */,
+				84D6775E2665449100100A4A /* ParticipantCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,9 +374,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D6775F2665449100100A4A /* ParticipantCell.swift in Sources */,
 				84BDE7AD2662796F007B6AAF /* RaffleViewController.swift in Sources */,
 				84BDE7A92662796F007B6AAF /* AppDelegate.swift in Sources */,
 				0B68A73B2664396400E643E7 /* Symbol + Label.swift in Sources */,
+				84D6775D2665447400100A4A /* RaffleDetailView.swift in Sources */,
 				847DF5C826634F08004266E2 /* AllRaffleView.swift in Sources */,
 				84BDE7E726628D52007B6AAF /* ErrorHandling.swift in Sources */,
 				0B68A74026645D5800E643E7 /* Alert.swift in Sources */,
@@ -378,12 +388,10 @@
 				84BDE7AB2662796F007B6AAF /* SceneDelegate.swift in Sources */,
 				84BDE7E026627EA6007B6AAF /* Raffle.swift in Sources */,
 				84BDE7E4266280D0007B6AAF /* Network.swift in Sources */,
-				847DF5D12663702A004266E2 /* SelectWinnerViewController.swift in Sources */,
 				84BDE7E92662902F007B6AAF /* Raffle-APIClient.swift in Sources */,
 				0B2E2541266405620068BCCA /* RaffleDetailViewController.swift in Sources */,
 				84BDE7EB26629E24007B6AAF /* Token.swift in Sources */,
 				847DF5CC2663664D004266E2 /* RaffleCellViewModel.swift in Sources */,
-				847DF5CF26636A1A004266E2 /* TabBarViewController.swift in Sources */,
 				847DF5CA266351F7004266E2 /* RaffleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

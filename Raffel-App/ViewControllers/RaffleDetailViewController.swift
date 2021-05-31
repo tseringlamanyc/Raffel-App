@@ -11,6 +11,12 @@ class RaffleDetailViewController: UIViewController {
     
     private var raffle: Raffle
     
+    private var detailView = RaffleDetailView()
+    
+    override func loadView() {
+        view = detailView 
+    }
+    
     init(raffle: Raffle) {
         self.raffle = raffle
         super.init(nibName: nil, bundle: nil)
@@ -23,6 +29,7 @@ class RaffleDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = raffle.name
+        view.backgroundColor = .systemBackground
     }
     
 }

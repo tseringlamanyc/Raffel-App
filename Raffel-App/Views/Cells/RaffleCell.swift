@@ -86,4 +86,8 @@ class RaffleCell: UICollectionViewCell {
             verticalStack.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
+    
+    public func congfigureCell(rafle: Raffle) {
+        
+    }
 }
