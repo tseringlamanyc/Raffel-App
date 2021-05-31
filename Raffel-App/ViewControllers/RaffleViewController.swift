@@ -78,6 +78,7 @@ class RaffleViewController: UIViewController {
         
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
             
+            //MARK:- COMBINE 
             guard let raffleName = ac?.textFields?[0].text, !raffleName.isEmpty, let secretToken = ac?.textFields?[1].text, !secretToken.isEmpty else {
                 self?.showAlert(title: "Fail", message: "Please enter all the fields")
                 return
@@ -87,8 +88,14 @@ class RaffleViewController: UIViewController {
         }
         
         ac.addAction(submitAction)
-        present(ac, animated: true)
+        present(ac, animated: true) {
+            
+        }
     }
+    
+    @objc func dismissOnTapOutside(){
+        self.dismiss(animated: true, completion: nil)
+     }
     
     private func postARaffle(name: String, token: String) {
         let createdRaffle = Raffle(id: nil, name: name, created_at: nil, raffled_at: nil, winner_id: nil, secret_token: token)
@@ -131,6 +138,7 @@ class RaffleViewController: UIViewController {
             }
             
             self?.raffleCellVM.configureCell(cell: cell, raffle: raffle)
+            
             return cell
         })
     }
@@ -139,7 +147,7 @@ class RaffleViewController: UIViewController {
         var snapshot = Snapshot()
         snapshot.appendSections([SectionKind.main])
         snapshot.appendItems(raffles)
-        snapshot.reloadItems(raffles)
+        
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }

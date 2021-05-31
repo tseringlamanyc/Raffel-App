@@ -13,7 +13,5 @@ class SelectWinnerViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGray
     }
-    
-
 
 }
