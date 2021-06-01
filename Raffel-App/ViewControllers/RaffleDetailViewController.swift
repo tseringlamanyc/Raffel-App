@@ -15,6 +15,8 @@ class RaffleDetailViewController: UIViewController {
     
     private lazy var emptyView = EmptyView(title: "No Participants", message: "No one has registered for this raffle yet")
     
+    private var winner: Winner?
+    
     override func loadView() {
         view = detailView 
     }
@@ -63,6 +65,7 @@ class RaffleDetailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         getAllParticipants()
+        getAWinner(id: raffle.id!)
     }
     
     override func viewDidLoad() {
@@ -132,6 +135,10 @@ class RaffleDetailViewController: UIViewController {
             
             section.boundarySupplementaryItems = [footer]
             
+            if let _ = self.raffle.winner_id  {
+                section.boundarySupplementaryItems = []
+            }
+            
             return section
         }
         
@@ -156,7 +163,7 @@ class RaffleDetailViewController: UIViewController {
             
             let gesture = UITapGestureRecognizer(target: self, action: #selector(self?.pickAWinnerTapped(_:)))
             footerView.addGestureRecognizer(gesture)
-            
+                        
             footerView.textLabel.text = "\(SectionKind.secondary.title)".capitalized
             footerView.layer.cornerRadius = 8
             footerView.layer.borderWidth = 2
@@ -204,7 +211,21 @@ class RaffleDetailViewController: UIViewController {
                 case .failure(_):
                     self?.showAlert(title: "Fail", message: "The secret token is not correct")
                 case .success(_):
-                    self?.showAlert(title: "Winner", message: "The winner is )")
+                    self?.getAWinner(id: raffleId)
+                    self?.showAlert(title: "Winner", message: "The winner is \(self?.winner?.firstname ?? "")")
+                }
+            }
+        }
+    }
+    
+    private func getAWinner(id: Int) {
+        RaffleAPIClient.getAWinner(id: raffle.id!) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print("error: \(error)")
+                case .success(let aWinner):
+                    self?.winner = aWinner
                 }
             }
         }
@@ -230,8 +251,7 @@ class RaffleDetailViewController: UIViewController {
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
             
             let phone = ac?.textFields?[3].text
-            
-            //MARK:- COMBINE
+
             guard let firstName = ac?.textFields?[0].text, !firstName.isEmpty, let lastName = ac?.textFields?[1].text, !lastName.isEmpty, let email = ac?.textFields?[2].text, !email.isEmpty else {
                 self?.showAlert(title: "Fail", message: "Please enter all the fields")
                 return

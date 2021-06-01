@@ -19,8 +19,7 @@ class ParticipantCell: UICollectionViewCell {
     public lazy var participantName: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
-        label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.numberOfLines = 0
         return label
     }()
@@ -38,7 +37,6 @@ class ParticipantCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 25, weight: .thin)
-        label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         return label
     }()
@@ -47,7 +45,6 @@ class ParticipantCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 15, weight: .light)
-        label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         return label
     }()
@@ -55,9 +52,7 @@ class ParticipantCell: UICollectionViewCell {
     public lazy var phonelLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 25, weight: .thin)
-        label.adjustsFontSizeToFitWidth = true
-        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 15, weight: .thin)
         label.numberOfLines = 0
         return label
     }()

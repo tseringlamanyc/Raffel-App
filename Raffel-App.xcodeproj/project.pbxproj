@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0B2E2541266405620068BCCA /* RaffleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E2540266405620068BCCA /* RaffleDetailViewController.swift */; };
-		0B68A73B2664396400E643E7 /* Symbol + Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68A73A2664396400E643E7 /* Symbol + Label.swift */; };
 		0B68A74026645D5800E643E7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68A73F26645D5800E643E7 /* Alert.swift */; };
 		847DF5C626634E11004266E2 /* BetterDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5C526634E11004266E2 /* BetterDate.swift */; };
 		847DF5C826634F08004266E2 /* AllRaffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5C726634F08004266E2 /* AllRaffleView.swift */; };
 		847DF5CA266351F7004266E2 /* RaffleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5C9266351F7004266E2 /* RaffleCell.swift */; };
-		847DF5CC2663664D004266E2 /* RaffleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847DF5CB2663664D004266E2 /* RaffleCellViewModel.swift */; };
 		84BDE7A92662796F007B6AAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7A82662796F007B6AAF /* AppDelegate.swift */; };
 		84BDE7AB2662796F007B6AAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7AA2662796F007B6AAF /* SceneDelegate.swift */; };
 		84BDE7AD2662796F007B6AAF /* RaffleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE7AC2662796F007B6AAF /* RaffleViewController.swift */; };
@@ -31,7 +29,6 @@
 		84D6775D2665447400100A4A /* RaffleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6775C2665447400100A4A /* RaffleDetailView.swift */; };
 		84D6775F2665449100100A4A /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6775E2665449100100A4A /* ParticipantCell.swift */; };
 		84D6776126655EE000100A4A /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6776026655EE000100A4A /* EmptyView.swift */; };
-		84D677632665625000100A4A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D677622665625000100A4A /* HeaderView.swift */; };
 		84D6776726657A5F00100A4A /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6776626657A5F00100A4A /* FooterView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,12 +51,10 @@
 
 /* Begin PBXFileReference section */
 		0B2E2540266405620068BCCA /* RaffleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaffleDetailViewController.swift; sourceTree = "<group>"; };
-		0B68A73A2664396400E643E7 /* Symbol + Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Symbol + Label.swift"; sourceTree = "<group>"; };
 		0B68A73F26645D5800E643E7 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		847DF5C526634E11004266E2 /* BetterDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterDate.swift; sourceTree = "<group>"; };
 		847DF5C726634F08004266E2 /* AllRaffleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRaffleView.swift; sourceTree = "<group>"; };
 		847DF5C9266351F7004266E2 /* RaffleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaffleCell.swift; sourceTree = "<group>"; };
-		847DF5CB2663664D004266E2 /* RaffleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaffleCellViewModel.swift; sourceTree = "<group>"; };
 		84BDE7A52662796F007B6AAF /* Raffel-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Raffel-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84BDE7A82662796F007B6AAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84BDE7AA2662796F007B6AAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +78,6 @@
 		84D6775C2665447400100A4A /* RaffleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaffleDetailView.swift; sourceTree = "<group>"; };
 		84D6775E2665449100100A4A /* ParticipantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
 		84D6776026655EE000100A4A /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
-		84D677622665625000100A4A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		84D6776626657A5F00100A4A /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,7 +133,6 @@
 				84BDE7D82662799B007B6AAF /* Model */,
 				84BDE7D9266279A1007B6AAF /* Networking */,
 				84BDE7DC266279BC007B6AAF /* Views */,
-				84BDE7DB266279B1007B6AAF /* View-Model */,
 				84BDE7DD266279C3007B6AAF /* ViewControllers */,
 				84BDE7E526628D43007B6AAF /* Extensions */,
 				84BDE7DA266279A9007B6AAF /* Utilities */,
@@ -192,18 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				84D6776026655EE000100A4A /* EmptyView.swift */,
-				84D677622665625000100A4A /* HeaderView.swift */,
 				84D6776626657A5F00100A4A /* FooterView.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		84BDE7DB266279B1007B6AAF /* View-Model */ = {
-			isa = PBXGroup;
-			children = (
-				847DF5CB2663664D004266E2 /* RaffleCellViewModel.swift */,
-			);
-			path = "View-Model";
 			sourceTree = "<group>";
 		};
 		84BDE7DC266279BC007B6AAF /* Views */ = {
@@ -239,7 +223,6 @@
 			children = (
 				84BDE7E626628D52007B6AAF /* ErrorHandling.swift */,
 				847DF5C526634E11004266E2 /* BetterDate.swift */,
-				0B68A73A2664396400E643E7 /* Symbol + Label.swift */,
 				0B68A73F26645D5800E643E7 /* Alert.swift */,
 			);
 			path = Extensions;
@@ -386,7 +369,6 @@
 				84D6775F2665449100100A4A /* ParticipantCell.swift in Sources */,
 				84BDE7AD2662796F007B6AAF /* RaffleViewController.swift in Sources */,
 				84BDE7A92662796F007B6AAF /* AppDelegate.swift in Sources */,
-				0B68A73B2664396400E643E7 /* Symbol + Label.swift in Sources */,
 				84D6775D2665447400100A4A /* RaffleDetailView.swift in Sources */,
 				847DF5C826634F08004266E2 /* AllRaffleView.swift in Sources */,
 				84BDE7E726628D52007B6AAF /* ErrorHandling.swift in Sources */,
@@ -396,13 +378,11 @@
 				84BDE7ED2662B857007B6AAF /* Winner.swift in Sources */,
 				847DF5C626634E11004266E2 /* BetterDate.swift in Sources */,
 				84BDE7AB2662796F007B6AAF /* SceneDelegate.swift in Sources */,
-				84D677632665625000100A4A /* HeaderView.swift in Sources */,
 				84BDE7E026627EA6007B6AAF /* Raffle.swift in Sources */,
 				84BDE7E4266280D0007B6AAF /* Network.swift in Sources */,
 				84BDE7E92662902F007B6AAF /* Raffle-APIClient.swift in Sources */,
 				0B2E2541266405620068BCCA /* RaffleDetailViewController.swift in Sources */,
 				84BDE7EB26629E24007B6AAF /* Token.swift in Sources */,
-				847DF5CC2663664D004266E2 /* RaffleCellViewModel.swift in Sources */,
 				847DF5CA266351F7004266E2 /* RaffleCell.swift in Sources */,
 				84D6776726657A5F00100A4A /* FooterView.swift in Sources */,
 			);

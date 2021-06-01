@@ -21,7 +21,6 @@ class RaffleCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
-        label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0 
         return label
     }()
@@ -29,16 +28,15 @@ class RaffleCell: UICollectionViewCell {
     public lazy var winnerLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 25, weight: .thin)
-        label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont.systemFont(ofSize: 20, weight: .thin)
         label.numberOfLines = 0
         return label
     }()
     
     public lazy var buttonImage: UIButton = {
        let button = UIButton()
-        button.setImage(UIImage(systemName: "checkmark.icloud.fill"), for: .normal)
-        button.tintColor = UIColor(displayP3Red: 28/255, green: 86/255, blue: 207/255, alpha: 1.0)
+        button.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        button.tintColor = .systemYellow
         button.frame.size.width = 44
         button.frame.size.height = 44
        return button
@@ -47,8 +45,8 @@ class RaffleCell: UICollectionViewCell {
     public lazy var createdAt: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 35, weight: .semibold)
-        label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.adjustsFontSizeToFitWidth = false
         label.numberOfLines = 0
         return label
     }()
@@ -56,8 +54,7 @@ class RaffleCell: UICollectionViewCell {
     public lazy var raffledOn: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 25, weight: .thin)
-        label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont.systemFont(ofSize: 20, weight: .thin)
         label.numberOfLines = 0
         return label
     }()
