@@ -60,6 +60,11 @@ class RaffleDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        getAllParticipants()
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -105,7 +110,7 @@ class RaffleDetailViewController: UIViewController {
         
         let layout = UICollectionViewCompositionalLayout{ [weak self] (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             
-            guard let sectionType = SectionKind(rawValue: sectionIndex) else {
+            guard let _ = SectionKind(rawValue: sectionIndex) else {
                 return nil
             }
                         
@@ -123,10 +128,10 @@ class RaffleDetailViewController: UIViewController {
             
             //4) Configure layout
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)) // .estimate = changes based on content
-            let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
+            let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.50), heightDimension: .estimated(44))
             let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
             let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
-                        
+            
             section.boundarySupplementaryItems = [header, footer]
             
             return section
@@ -151,7 +156,7 @@ class RaffleDetailViewController: UIViewController {
                 guard let headerView = self?.detailView.cv.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView else {
                     fatalError()
                 }
-                
+  
                 headerView.textLabel.text = "\(SectionKind.main.title)".capitalized
                 headerView.layer.cornerRadius = 8
                 headerView.layer.borderWidth = 2
@@ -183,6 +188,7 @@ class RaffleDetailViewController: UIViewController {
         
         if let hasAWinner = raffle.winner_id {
             self.showAlert(title: "Sorry", message: "This raffle already has a winner: \(hasAWinner)")
+            navigationItem.rightBarButtonItem = nil
         } else {
             let ac = UIAlertController(title: "Secret Token", message: nil, preferredStyle: .alert)
             ac.addTextField { (textField) in
@@ -198,18 +204,25 @@ class RaffleDetailViewController: UIViewController {
             }
             
             ac.addAction(submitAction)
-            present(ac, animated: true)
+            present(ac, animated: true) {
+                ac.view.superview?.isUserInteractionEnabled = true
+                ac.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTapOutside)))
+            }
         }
     }
+    
+    @objc func dismissOnTapOutside() {
+        self.dismiss(animated: true, completion: nil)
+     }
     
     private func putAWinner(token: String, raffleId: Int) {
         RaffleAPIClient.requestAWinner(token: token, raffleId: raffle.id!) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
-                case .failure(let error):
-                    print(error)
+                case .failure(_):
+                    self?.showAlert(title: "Fail", message: "The secret token is not correct")
                 case .success(_):
-                    self?.showAlert(title: "Winner", message: "The winner is \(self?.raffle.winner_id?.description ?? "")")
+                    self?.showAlert(title: "Winner", message: "The winner is )")
                 }
             }
         }
@@ -247,6 +260,10 @@ class RaffleDetailViewController: UIViewController {
         
         ac.addAction(submitAction)
         present(ac, animated: true)
+        {
+            ac.view.superview?.isUserInteractionEnabled = true
+            ac.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTapOutside)))
+        }
     }
     
     private func addAParticipant(firstName: String, lastName: String, email: String, phone: String?) {
@@ -258,10 +275,12 @@ class RaffleDetailViewController: UIViewController {
                     print(error)
                 case .success(_):
                     self?.showAlert(title: "Success", message: "\(aParticipant.firstname) \(aParticipant.lastname) was added to this raffle")
+                    self?.getAllParticipants()
                 }
             }
         }
     }
+    
     
     
     private func updateSnapShot(participant: [Participant]) {

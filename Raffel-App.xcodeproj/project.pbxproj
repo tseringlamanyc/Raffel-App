@@ -32,7 +32,6 @@
 		84D6775F2665449100100A4A /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6775E2665449100100A4A /* ParticipantCell.swift */; };
 		84D6776126655EE000100A4A /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6776026655EE000100A4A /* EmptyView.swift */; };
 		84D677632665625000100A4A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D677622665625000100A4A /* HeaderView.swift */; };
-		84D677652665742800100A4A /* AddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D677642665742800100A4A /* AddCell.swift */; };
 		84D6776726657A5F00100A4A /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6776626657A5F00100A4A /* FooterView.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +84,6 @@
 		84D6775E2665449100100A4A /* ParticipantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
 		84D6776026655EE000100A4A /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		84D677622665625000100A4A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		84D677642665742800100A4A /* AddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCell.swift; sourceTree = "<group>"; };
 		84D6776626657A5F00100A4A /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,7 +250,6 @@
 			children = (
 				847DF5C9266351F7004266E2 /* RaffleCell.swift */,
 				84D6775E2665449100100A4A /* ParticipantCell.swift */,
-				84D677642665742800100A4A /* AddCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -395,7 +392,6 @@
 				84BDE7E726628D52007B6AAF /* ErrorHandling.swift in Sources */,
 				0B68A74026645D5800E643E7 /* Alert.swift in Sources */,
 				84BDE7E22662802B007B6AAF /* Participant.swift in Sources */,
-				84D677652665742800100A4A /* AddCell.swift in Sources */,
 				84D6776126655EE000100A4A /* EmptyView.swift in Sources */,
 				84BDE7ED2662B857007B6AAF /* Winner.swift in Sources */,
 				847DF5C626634E11004266E2 /* BetterDate.swift in Sources */,

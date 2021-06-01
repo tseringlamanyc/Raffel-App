@@ -86,7 +86,10 @@ class RaffleViewController: UIViewController {
         }
         
         ac.addAction(submitAction)
-        present(ac, animated: true)
+        present(ac, animated: true) {
+            ac.view.superview?.isUserInteractionEnabled = true
+            ac.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTapOutside)))
+        }
     }
     
     @objc func dismissOnTapOutside(){
@@ -102,6 +105,7 @@ class RaffleViewController: UIViewController {
                     print("error adding raffle: \(error)")
                 case .success(_):
                     self?.showAlert(title: "Success", message: "Raffle Added")
+                    self?.getAllRaffles()
                 }
             }
         }
@@ -128,7 +132,7 @@ class RaffleViewController: UIViewController {
     }
     
     private func configureDataSource() {
-        dataSource = DataSource(collectionView: homeView.cv, cellProvider: { [weak self] collectionView, indexPath, raffle in
+        dataSource = DataSource(collectionView: homeView.cv, cellProvider: { collectionView, indexPath, raffle in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RaffleCell.reuseIdentifier, for: indexPath) as? RaffleCell else {
                 fatalError()
             }
