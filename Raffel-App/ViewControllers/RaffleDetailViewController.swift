@@ -62,7 +62,7 @@ class RaffleDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        getAllParticipants()
+      
     }
         
     override func viewDidLoad() {
@@ -108,7 +108,7 @@ class RaffleDetailViewController: UIViewController {
     
     private func createLayout() -> UICollectionViewLayout {
         
-        let layout = UICollectionViewCompositionalLayout{ [weak self] (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout{  (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             
             guard let _ = SectionKind(rawValue: sectionIndex) else {
                 return nil
@@ -281,13 +281,10 @@ class RaffleDetailViewController: UIViewController {
         }
     }
     
-    
-    
     private func updateSnapShot(participant: [Participant]) {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(participant, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    
 }

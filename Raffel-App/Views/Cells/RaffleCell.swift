@@ -91,14 +91,12 @@ class RaffleCell: UICollectionViewCell {
     
     public func configureCell(raffle: Raffle) {
         
-        layer.borderColor = UIColor.systemGreen.cgColor
-        layer.borderWidth = 2
+        layer.backgroundColor = UIColor.systemGreen.cgColor
         
         raffleName.text = raffle.name ?? ""
         
         if let _ = raffle.winner_id {
-            layer.borderColor = UIColor.red.cgColor
-            layer.borderWidth = 2
+            layer.backgroundColor = UIColor.systemRed.cgColor
             raffledOn.text = "Raffled At: \(raffle.raffled_at?.toDate() ?? "")"
             winnerLabel.text = "Winner Id: \(raffle.winner_id?.description ?? "")"
         } else {

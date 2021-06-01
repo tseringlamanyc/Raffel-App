@@ -75,8 +75,7 @@ class RaffleViewController: UIViewController {
         }
         
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
-            
-            //MARK:- COMBINE 
+
             guard let raffleName = ac?.textFields?[0].text, !raffleName.isEmpty, let secretToken = ac?.textFields?[1].text, !secretToken.isEmpty else {
                 self?.showAlert(title: "Fail", message: "Please enter all the fields")
                 return
@@ -117,15 +116,12 @@ class RaffleViewController: UIViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
         
-        //2) Create and configure group
         let groupHeight = NSCollectionLayoutDimension.absolute(200)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: groupHeight)
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
         
-        //3) Configure section
         let section = NSCollectionLayoutSection(group: group)
         
-        //4) Configure layout
         let layout = UICollectionViewCompositionalLayout(section: section)
         
         return layout
@@ -151,6 +147,16 @@ class RaffleViewController: UIViewController {
 }
 
 extension RaffleViewController: UICollectionViewDelegate {
+     func collectionView(_ collectionView: UICollectionView,
+                                willDisplay cell: UICollectionViewCell,
+                                forItemAt indexPath: IndexPath) {
+       
+       cell.alpha = 0
+       UIView.animate(withDuration: 0.5) {
+           cell.alpha = 1
+       }
+   }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let raffle = dataSource.itemIdentifier(for: indexPath) else {return}
         
