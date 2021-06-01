@@ -35,7 +35,7 @@ class RaffleDetailViewController: UIViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<SectionKind, Participant>
     private var dataSource: DataSource!
-        
+    
     typealias Snapshot = NSDiffableDataSourceSnapshot<SectionKind, Participant>
     typealias Snapshot2 = NSDiffableDataSourceSnapshot<SectionKind, String>
     
@@ -62,9 +62,9 @@ class RaffleDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-      
+        getAllParticipants()
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -79,7 +79,6 @@ class RaffleDetailViewController: UIViewController {
         detailView.cv.register(ParticipantCell.self, forCellWithReuseIdentifier: ParticipantCell.resueIdentifier)
         detailView.cv.backgroundColor = .systemBackground
         detailView.cv.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        detailView.cv.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier)
         detailView.cv.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterView.reuseIdentifier)
         view.addSubview(detailView.cv)
     }
@@ -87,7 +86,11 @@ class RaffleDetailViewController: UIViewController {
     
     private func configureNavBar() {
         navigationItem.title = raffle.name?.uppercased()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addAParticipantButtonTapped))
+        if let _ = raffle.winner_id {
+            navigationItem.rightBarButtonItem = nil
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addAParticipantButtonTapped))
+        }
     }
     
     
@@ -98,8 +101,8 @@ class RaffleDetailViewController: UIViewController {
                 case .failure(let error):
                     print(error)
                 case .success(let participants):
-                    self?.updateSnapShot(participant: participants)
-                    self?.allParticipant = participants
+                    self?.updateSnapShot(participant: participants.reversed())
+                    self?.allParticipant = participants.reversed()
                 }
             }
         }
@@ -113,33 +116,28 @@ class RaffleDetailViewController: UIViewController {
             guard let _ = SectionKind(rawValue: sectionIndex) else {
                 return nil
             }
-                        
+            
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
             
-            //2) Create and configure group
             let groupHeight = NSCollectionLayoutDimension.absolute(200)
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: groupHeight)
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
             
-            //3) Configure section
             let section = NSCollectionLayoutSection(group: group)
             
-            //4) Configure layout
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)) // .estimate = changes based on content
             let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.50), heightDimension: .estimated(44))
-            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
             let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
             
-            section.boundarySupplementaryItems = [header, footer]
+            section.boundarySupplementaryItems = [footer]
             
             return section
         }
         
         return layout
     }
-        
+    
     private func configureDataSource() {
         dataSource = DataSource(collectionView: detailView.cv, cellProvider: { [weak self] collectionView, indexPath, participant in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ParticipantCell.resueIdentifier, for: indexPath) as? ParticipantCell else {
@@ -151,35 +149,20 @@ class RaffleDetailViewController: UIViewController {
         })
         
         dataSource.supplementaryViewProvider = { [weak self] (collectionView, kind, indexPath) in
-            switch kind {
-            case UICollectionView.elementKindSectionHeader:
-                guard let headerView = self?.detailView.cv.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView else {
-                    fatalError()
-                }
-  
-                headerView.textLabel.text = "\(SectionKind.main.title)".capitalized
-                headerView.layer.cornerRadius = 8
-                headerView.layer.borderWidth = 2
-                headerView.layer.borderColor = UIColor.systemGray.cgColor
-                return headerView
-                
-            case UICollectionView.elementKindSectionFooter:
-                guard let footerView = self?.detailView.cv.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView else {
-                    fatalError()
-                }
-                
-                let gesture = UITapGestureRecognizer(target: self, action: #selector(self?.pickAWinnerTapped(_:)))
-                footerView.addGestureRecognizer(gesture)
-                
-                footerView.textLabel.text = "\(SectionKind.secondary.title)".capitalized
-                footerView.layer.cornerRadius = 8
-                footerView.layer.borderWidth = 2
-                footerView.layer.borderColor = UIColor.systemGray.cgColor
-                return footerView
-            default:
-                break
+            
+            guard let footerView = self?.detailView.cv.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterView.reuseIdentifier, for: indexPath) as? FooterView else {
+                fatalError()
             }
-            return nil
+            
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(self?.pickAWinnerTapped(_:)))
+            footerView.addGestureRecognizer(gesture)
+            
+            footerView.textLabel.text = "\(SectionKind.secondary.title)".capitalized
+            footerView.layer.cornerRadius = 8
+            footerView.layer.borderWidth = 2
+            footerView.layer.borderColor = UIColor.systemGray.cgColor
+            return footerView
+            
         }
     }
     
@@ -188,11 +171,10 @@ class RaffleDetailViewController: UIViewController {
         
         if let hasAWinner = raffle.winner_id {
             self.showAlert(title: "Sorry", message: "This raffle already has a winner: \(hasAWinner)")
-            navigationItem.rightBarButtonItem = nil
         } else {
             let ac = UIAlertController(title: "Secret Token", message: nil, preferredStyle: .alert)
             ac.addTextField { (textField) in
-                textField.placeholder = "Enter the secret token *"
+                textField.placeholder = "Enter the secret token*"
             }
             let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
                 guard let secretToken = ac?.textFields?[0].text, !secretToken.isEmpty else {
@@ -213,7 +195,7 @@ class RaffleDetailViewController: UIViewController {
     
     @objc func dismissOnTapOutside() {
         self.dismiss(animated: true, completion: nil)
-     }
+    }
     
     private func putAWinner(token: String, raffleId: Int) {
         RaffleAPIClient.requestAWinner(token: token, raffleId: raffle.id!) { [weak self] result in
@@ -285,6 +267,6 @@ class RaffleDetailViewController: UIViewController {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(participant, toSection: .main)
-        dataSource.apply(snapshot, animatingDifferences: false)
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
 }

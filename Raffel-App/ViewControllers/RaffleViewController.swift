@@ -152,9 +152,9 @@ extension RaffleViewController: UICollectionViewDelegate {
                                 forItemAt indexPath: IndexPath) {
        
        cell.alpha = 0
-       UIView.animate(withDuration: 0.5) {
-           cell.alpha = 1
-       }
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveLinear], animations: {
+            cell.alpha = 1 
+        }, completion: nil)
    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -21,6 +21,7 @@ class RaffleCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
+        label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0 
         return label
     }()
@@ -28,14 +29,25 @@ class RaffleCell: UICollectionViewCell {
     public lazy var winnerLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 25, weight: .thin)
+        label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         return label
+    }()
+    
+    public lazy var buttonImage: UIButton = {
+       let button = UIButton()
+        button.setImage(UIImage(systemName: "checkmark.icloud.fill"), for: .normal)
+        button.tintColor = UIColor(displayP3Red: 28/255, green: 86/255, blue: 207/255, alpha: 1.0)
+        button.frame.size.width = 44
+        button.frame.size.height = 44
+       return button
     }()
     
     public lazy var createdAt: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 35, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 35, weight: .semibold)
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         return label
@@ -44,8 +56,24 @@ class RaffleCell: UICollectionViewCell {
     public lazy var raffledOn: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 25, weight: .thin)
+        label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         return label
+    }()
+    
+    public lazy var horizontalStack: UIStackView = {
+       let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .leading
+      
+        [self.raffleName,
+         self.buttonImage
+        ].forEach {
+            stack.addArrangedSubview($0)
+        }
+        stack.setCustomSpacing(150, after: self.raffleName)
+        return stack
     }()
     
     public lazy var verticalStack: UIStackView = {
@@ -53,7 +81,7 @@ class RaffleCell: UICollectionViewCell {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillEqually
-        [self.raffleName,
+        [self.horizontalStack,
          self.createdAt,
          self.winnerLabel,
          self.raffledOn
@@ -82,21 +110,23 @@ class RaffleCell: UICollectionViewCell {
         
         verticalStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            verticalStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            verticalStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
             verticalStack.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
             verticalStack.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
-            verticalStack.bottomAnchor.constraint(equalTo: bottomAnchor)
+            verticalStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ])
     }
     
     public func configureCell(raffle: Raffle) {
         
         layer.backgroundColor = UIColor.systemGreen.cgColor
+        self.buttonImage.alpha = 0
         
-        raffleName.text = raffle.name ?? ""
+        raffleName.text = raffle.name?.uppercased() ?? ""
         
         if let _ = raffle.winner_id {
-            layer.backgroundColor = UIColor.systemRed.cgColor
+            layer.backgroundColor = UIColor.systemGray2.cgColor
+            self.buttonImage.alpha = 1
             raffledOn.text = "Raffled At: \(raffle.raffled_at?.toDate() ?? "")"
             winnerLabel.text = "Winner Id: \(raffle.winner_id?.description ?? "")"
         } else {
